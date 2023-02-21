@@ -1,16 +1,24 @@
+const postDd = []
+let baseID = 0
 
 const findAllPosts = async() => {
-    //? Your code here:
-
+    return await postDb
 }
 
-const findPostById = async() => {
-    //? Your code here:
-
+const findPostById = async(id) => {
+    const data = postDd.find(post => post.id ===id)
+    return data
 }
 
-const createPost = async() => {
-    //? Your code here:
+const createPost = async(postObj) => {
+    const newPost = {
+        id: ++baseID,
+        content: postObj.content,
+        userName: postObj.userName,
+        isPublished: 'true'
+    }
+    await postDd.push(newPost)
+    return newPost
 
 }
 
