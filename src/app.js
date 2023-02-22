@@ -1,9 +1,8 @@
-// dependences
+// dependencies
 const express = require('express')
 
 // router import
-
-//const useRouter = require('./posts/posts.router')
+const useRouter = require('./posts/posts.router')
 
 //config port
 const port = 9000
@@ -17,7 +16,7 @@ app.get('/', (req,res) => {
 })
 
 //api router
-//app.use('/api', useRouter)
+app.use('/api/v1', useRouter)
 
 // start server 
 app.listen(port, () => {
