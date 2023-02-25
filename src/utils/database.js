@@ -1,9 +1,7 @@
 const { Sequelize } = require('sequelize')
 
-const db = new Sequelize({
-    dialect: 'postgres',
-    host: 'localhost',
-    username: 'postgres',
-    password: 'wjc',
-    database: ''
-})
+const config = require('../../config')
+
+const db = new Sequelize(config.db.development)
+
+module.exports = db
