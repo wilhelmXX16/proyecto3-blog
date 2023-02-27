@@ -40,9 +40,70 @@ const postNewPosts = (req,res) =>{
         })
     }
 
+const deletePosts = (req,res) =>{
+    const id = req.params.id
+
+    postsControllers.deletePost(id)
+        .then(data => {
+            if(data){
+                res.status(204).json()
+            } else {
+                res.status(404).json({message: 'Product not found'})
+            }
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+}
+
+const patchPosts = (req,res) => {
+    const id = req.params.id
+    const postObj = req.body
+
+    postsControllers.updatePost(id,postObj)
+        .then(data => {
+            if(data){
+                res.status(200).json({message: `Product with id: ${id} updated succesfully`})
+            } else {
+                res.status(404).json({message: 'Product not found'})
+            }
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+}
+const putPosts = (req,res) => {
+    const id = req.params.id
+    const postObj = req.body
+
+    if(!postObj.content || !postObj.userName){
+        return res.status(400).json({
+            message: 'Missing Data',
+            example_fields: {
+                content: 'text',
+                userName: 'String'
+            }
+        })
+    }
+
+    postsControllers.updatePost(id,postObj)
+        .then(data => {
+            if(data){
+                res.status(200).json({message: `Product with id: ${id} updated succesfully`})
+            } else {
+                res.status(404).json({message: 'Product not found'})
+            }
+        })
+        .catch(err => {
+            res.status(400).json(err)
+        })
+}
 
 module.exports = {
     getAllPosts,
     getPostById,
-    postNewPosts
+    postNewPosts,
+    deletePosts,
+    patchPosts,
+    putPosts
 }

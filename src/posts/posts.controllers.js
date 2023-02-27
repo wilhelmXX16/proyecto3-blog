@@ -1,35 +1,46 @@
-const postDd = []
-let baseID = 0
+const Posts = require('../models/posts.models')
+
 
 const findAllPosts = async() => {
-    return await postDb
+    const data = await Posts.findAll()
+    return data
 }
 
 const findPostById = async(id) => {
-    const data = postDd.find(post => post.id ===id)
+    const data = await Posts.findOne({
+        where: {
+            id: id
+        }
+    })
     return data
 }
 
 const createPost = async(postObj) => {
     const newPost = {
-        id: ++baseID,
         content: postObj.content,
-        userName: postObj.userName,
-        isPublished: 'true'
+        userName: postObj.userName
     }
-    await postDd.push(newPost)
-    return newPost
+    const data = await Posts.create(newPost)
+    return data
 
 }
 
-const updatePost = async() => {
-    //? Your code here:
-
+const updatePost = async(id, postObj) => {
+    const data = await Posts.update(postObj, {
+        where: {
+            id: id
+        }
+    })
+    return data[0]
 }
 
-const deletePost = async() => {
-    //? Your code here:
-
+const deletePost = async(id) => {
+    const data = await Posts.destroy({
+        where: { 
+            id: id
+        }
+    })
+    return data
 }
 
 module.exports = {

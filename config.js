@@ -10,12 +10,14 @@ const configs = {
         development: {
             dialect: 'postgres',
             host: 'localhost',
-            usermane: 'postgres',
-            password: 'wjc',
-            database: 'blogDB',
+            username: 'postgres',
+            password: 'root',
+            port: 5432,
+            database: 'blogDB3',
             define: {
                 timestamps: true, 
-                underscored : true
+                underscored : true,
+                underscoredAll: true
             }
         },
         test: {

@@ -1,6 +1,6 @@
 const {DataTypes} = require('sequelize')
 
-const bd = require('../utils/database')
+const db = require('../utils/database')
 
 const Posts = db.define('posts', {
     id:{
@@ -9,16 +9,16 @@ const Posts = db.define('posts', {
         primaryKey: true,
     },
     content:{
-        type:DataTypes.STRING,
+        type:DataTypes.TEXT,
         allowNull: false
     },
     userName:{
         type:DataTypes.STRING,
         allowNull: false
     },
-    isPublished: {
-        type: Sequelize.BOOLEAN,
-        defaultValue: "True",
+    published: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: "True"
     }
 
 })
