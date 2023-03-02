@@ -31,7 +31,7 @@ const updatePost = async(id, postObj) => {
             id: id
         }
     })
-    return data[0]
+    return data
 }
 
 const deletePost = async(id) => {
